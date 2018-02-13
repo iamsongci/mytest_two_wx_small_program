@@ -1,0 +1,27 @@
+<!--pages/list/list.wxml-->
+<view class='container'>
+  <view class='widget'>
+    <text class='column'>ID</text>
+    <text class='column'>姓名</text>
+    <text class='column'>角色</text>
+    <text class='link-column'>操作</text>
+  </view>
+  <scroll-view scroll-y="true">
+    <view>
+      <block wx:for="{{list}}">
+        <view class='widget'>
+          <text class='column'>{{item.id}}</text>
+          <text class='column'>{{item.name}}</text>
+          <text class='column' wx:if="{{item.roleId == 1}}">班长</text>
+          <text class='column' wx:elif="{{item.roleId == 2}}">班委</text>
+          <text class='column' wx:elif="{{item.roleId == 3}}">学生</text>
+          <view class='link-column'>
+            <navigator class='link' url='../operation/operation?id={{item.id}}'>编辑</navigator>|
+            <text class='link' bindtap='deleteStudent' data-stuId='{{item.id}}' data-stuName='{{item.name}}' data-index='{{index}}'>删除</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <button type='primary' bindtap='addStudent'>添加学生信息</button>
+</view>

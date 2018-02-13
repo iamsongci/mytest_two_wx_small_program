@@ -1,0 +1,23 @@
+<!--pages/operation/operation.wxml-->
+<view class='container'>
+  <form bindsubmit='formSubmit' bindreset='formReset'>
+    <view class='row'>
+      <text>姓名：</text>
+      <input type='text' name="name" placeholder='请输入学生姓名' value='{{stuName}}' />
+    </view>
+    <view class='row'>
+      <text>角色：</text>
+      <!-- <input type='number' name="roleId" placeholder='学生角色ID' value='{{roleId}}' /> -->
+       <radio-group bindchange="radioChange" name="roleId">
+          <label wx:for="{{items}}" wx:key="{{item.value}}">
+              <radio value="{{item.value}}" checked="{{item.checked}}" />
+            {{item.name}}
+          </label>
+        </radio-group>
+    </view>
+    <view class='row'>
+      <button type='primary' form-type='submit'>提交</button>
+      <button type='primary' form-type='reset'>清空</button>
+    </view>
+  </form>
+</view>
